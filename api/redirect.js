@@ -1,0 +1,12 @@
+export default function handler(req, res) {
+  const id = process.env.LOCALFOCUS_ID;
+
+  if (!id) {
+    res.status(500).send("LOCALFOCUS_ID environment variable not set");
+    return;
+  }
+
+  const targetUrl = `https://localfocuswidgets.net/${id}`;
+  res.writeHead(302, { Location: targetUrl });
+  res.end();
+}
